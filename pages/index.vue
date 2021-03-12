@@ -141,24 +141,29 @@ export default {
     }
   },
   created() {
-    this.getIndexHotCourseTeacher()
+    this.getIndexHotCourse()
+    this.getIndexHotTeacher()
     this.getIndexBanner()
   },
   methods:{
     getIndexBanner(){
       banner.getBanner()
       .then(response => {
-        this.banners = response.data.data.banners
-        console.log(this.banners)
+        this.banners = response.data
+
       })
     },
-    getIndexHotCourseTeacher() {
-      index.getIndex().then(response => {
+    getIndexHotCourse() {
+      index.getIndexHotCourse().then(response => {
         //这里是两个data
-        this.teachers = response.data.data.teachers
-        this.courses = response.data.data.courses
-        console.log(this.teachers);
-        console.log(this.courses);
+        this.courses = response.data
+      })
+    },
+    getIndexHotTeacher() {
+      index.getIndexHotTeacher().then(response => {
+        //这里是两个data
+
+        this.teachers = response.data
       })
     }
   }
